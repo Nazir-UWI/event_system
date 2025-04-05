@@ -45,7 +45,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: event_management
     volumes:
-      - dbdata:/var/lib/mysql
+      - ./database_service/dbdata
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -81,6 +81,3 @@ services:
       - "9104:9104"
     environment:
       - DATA_SOURCE_NAME=root:root@(database_service:3306)/
-
-volumes:
-  dbdata:
