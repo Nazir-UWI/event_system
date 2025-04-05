@@ -14,18 +14,24 @@ services:
     depends_on:
       - database_service
       - caching_service
+    deploy:
+      replicas: 2
 
   event_service:
     build: ./event_service
     depends_on:
       - database_service
       - caching_service
+    deploy:
+      replicas: 2
 
   user_registration_service:
     build: ./user_registration_service
     depends_on:
       - database_service
       - caching_service
+    deploy:
+      replicas: 2
 
   caching_service:
     image: redis:latest
@@ -45,7 +51,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: event_management
     volumes:
-      - ./database_service/dbdata
+      - dbdata:/var/lib/mysql
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -81,3 +87,6 @@ services:
       - "9104:9104"
     environment:
       - DATA_SOURCE_NAME=root:root@(database_service:3306)/
+
+volumes:
+  dbdata:
