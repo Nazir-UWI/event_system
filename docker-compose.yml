@@ -14,24 +14,18 @@ services:
     depends_on:
       - database_service
       - caching_service
-    deploy:
-      replicas: 2
 
   event_service:
     build: ./event_service
     depends_on:
       - database_service
       - caching_service
-    deploy:
-      replicas: 2
 
   user_registration_service:
     build: ./user_registration_service
     depends_on:
       - database_service
       - caching_service
-    deploy:
-      replicas: 2
 
   caching_service:
     image: redis:latest
