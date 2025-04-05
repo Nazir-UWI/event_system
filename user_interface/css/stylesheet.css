@@ -1,0 +1,30 @@
+*{
+    font-family: Calibri;
+}
+
+body{  
+    background-color: rgb(138, 209, 250);  
+}  
+ 
+.topnav {
+    overflow: hidden;
+    background-color: #1c2bff;
+    }
+    
+    .topnav a {
+    float: left;
+    color: #b8e0ff;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    }
+    
+    .topnav a:hover {
+    background-color: #589efa;
+    color: black;
+    }
+
+
+
+
