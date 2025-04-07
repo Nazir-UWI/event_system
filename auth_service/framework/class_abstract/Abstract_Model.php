@@ -7,9 +7,16 @@ abstract class Abstract_Model{
 	protected $redis;
 
     public function __construct(){             //constructor
-		$servername = "database_service";
+		// $servername = "database_service";
+        // $username = "root";
+        // $password = "root";
+        // $dbname = "event_management";
+
+		// $this->conn = new \mysqli($servername, $username, $password, $dbname);      //create connection to server
+
+		$servername = "146.148.110.127";
         $username = "root";
-        $password = "root";
+        $password = "SecurePass123!";
         $dbname = "event_management";
 
 		$this->conn = new \mysqli($servername, $username, $password, $dbname);      //create connection to server
