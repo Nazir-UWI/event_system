@@ -6,16 +6,15 @@ abstract class Abstract_Model{
     protected $conn;
 	protected $redis;
 
-    public function __construct(){             //constructor
-		// $servername = "database_service";
-        // $username = "root";
-        // $password = "root";
-        // $dbname = "event_management";
+    public function __construct(){             //constructor	
 
-		$servername = "146.148.110.127";
-        $username = "root";
-        $password = "SecurePass123!";
-        $dbname = "event_management";
+		$servername = getenv('DB_HOST');
+        $username 	= getenv('DB_USER');
+        $password 	= getenv('DB_PASS');
+        $dbname 	= getenv('DB_NAME');
+
+		$redisHost 	= getenv('REDIS_HOST');
+		$redisPort 	= getenv('REDIS_PORT');
 
 		$this->conn = new \mysqli($servername, $username, $password, $dbname);      //create connection to server
 
@@ -24,7 +23,7 @@ abstract class Abstract_Model{
 		}
 		
 		$this->redis = new \Redis();                               // Connect to Redis
-		$this->redis->connect('redis', 6379);	
+		$this->redis->connect($redisHost, $redisPort);	
 	}
 
     public function closeDatabaseConnection (){        //close connection to database
