@@ -12,7 +12,6 @@ services:
   auth_service:
     build: ./auth_service
     depends_on:
-      - database_service
       - caching_service
     deploy:
       replicas: 2
@@ -20,7 +19,6 @@ services:
   event_service:
     build: ./event_service
     depends_on:
-      - database_service
       - caching_service
     deploy:
       replicas: 2
@@ -28,7 +26,6 @@ services:
   user_registration_service:
     build: ./user_registration_service
     depends_on:
-      - database_service
       - caching_service
     deploy:
       replicas: 2
@@ -41,41 +38,3 @@ services:
     volumes:
       - ./caching_service/redis.conf:/usr/local/etc/redis/redis.conf
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: pma
-    environment:
-      PMA_HOST: database_service
-      PMA_PORT: 3306
-    restart: always
-    ports:
-      - "8070:80"
-
-  prometheus:
-    image: prom/prometheus
-    ports:
-      - 9090:9090
-    volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-
-  grafana:
-    image: grafana/grafana
-    container_name: grafana
-    ports:
-      - 3000:3000
-    environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-
-  mysqld-exporter:
-    image: prom/mysqld-exporter
-    container_name: mysqld-exporter
-    restart: unless-stopped
-    ports:
-      - "9104:9104"
-    environment:
-      - DATA_SOURCE_NAME=root:root@(database_service:3306)/
-
-volumes:
-  dbdata:
