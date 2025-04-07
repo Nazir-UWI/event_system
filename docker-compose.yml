@@ -41,17 +41,6 @@ services:
     volumes:
       - ./caching_service/redis.conf:/usr/local/etc/redis/redis.conf
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
-    
-  database_service:
-    image: mysql:latest
-    container_name: database_service
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: event_management
-    volumes:
-      - dbdata:/var/lib/mysql
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
