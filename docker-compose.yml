@@ -15,6 +15,13 @@ services:
       - caching_service
     deploy:
       replicas: 2
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
 
   event_service:
     build: ./event_service
@@ -22,6 +29,13 @@ services:
       - caching_service
     deploy:
       replicas: 2
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
 
   user_registration_service:
     build: ./user_registration_service
@@ -29,6 +43,13 @@ services:
       - caching_service
     deploy:
       replicas: 2
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
 
   caching_service:
     image: redis:latest
@@ -43,8 +64,8 @@ services:
     image: phpmyadmin/phpmyadmin
     container_name: pma
     environment:
-      PMA_HOST: 146.148.110.127
-      PMA_PORT: 3306
+      PMA_HOST: ${DB_HOST}
+      PMA_PORT: ${DB_PORT}
     restart: always
     ports:
       - "8070:80"
@@ -72,4 +93,4 @@ services:
     ports:
       - "9104:9104"
     environment:
-      - DATA_SOURCE_NAME=root:root@(146.148.110.127:3306)/
+      - DATA_SOURCE_NAME=root:root@(${DB_HOST}:${DB_PORT})/
