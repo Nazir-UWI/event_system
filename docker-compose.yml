@@ -3,7 +3,7 @@ services:
     container_name: load_balancer
     build: ./load_balancer
     ports:
-      - "8080:80"
+      - "80:80"
     depends_on:
       - auth_service
       - event_service
@@ -14,7 +14,7 @@ services:
     depends_on:
       - caching_service
     deploy:
-      replicas: 2
+      replicas: 3
     environment:
       DB_HOST: ${DB_HOST}
       DB_USER: ${DB_USER}
@@ -28,7 +28,7 @@ services:
     depends_on:
       - caching_service
     deploy:
-      replicas: 2
+      replicas: 3
     environment:
       DB_HOST: ${DB_HOST}
       DB_USER: ${DB_USER}
@@ -42,7 +42,7 @@ services:
     depends_on:
       - caching_service
     deploy:
-      replicas: 2
+      replicas: 3
     environment:
       DB_HOST: ${DB_HOST}
       DB_USER: ${DB_USER}
