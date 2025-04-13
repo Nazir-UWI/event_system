@@ -14,7 +14,7 @@ services:
     depends_on:
       - caching_service
     deploy:
-      replicas: 1
+      replicas: 3
     environment:
       DB_HOST: ${DB_HOST}
       DB_USER: ${DB_USER}
@@ -28,7 +28,7 @@ services:
     depends_on:
       - caching_service
     deploy:
-      replicas: 1
+      replicas: 3
     environment:
       DB_HOST: ${DB_HOST}
       DB_USER: ${DB_USER}
@@ -42,7 +42,7 @@ services:
     depends_on:
       - caching_service
     deploy:
-      replicas: 1
+      replicas: 3
     environment:
       DB_HOST: ${DB_HOST}
       DB_USER: ${DB_USER}

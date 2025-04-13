@@ -13,5 +13,5 @@ class WebsiteUser(HttpUser):
         self.client.post("/login", json={"email": "testuser100@example.com", "password": "SecurePass123!"})
 
     @task
-    def slow_page(self):
-        self.client.get(url="/events")
+    def auth_user(self):
+        self.client.get("/user", json={"email": "testuser100@example.com", "password": "SecurePass123!"})
