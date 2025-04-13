@@ -4,14 +4,14 @@ namespace app\model;
 class UserModel extends \framework\class_abstract\Abstract_Model{
 
     public function getUserInfo($email){
-        $cache_key = "auth_user_model";
-        $cached_user_info = $this->redis->hGet($cache_key, $email);                      
+        // $cache_key = "auth_user_model";
+        // $cached_user_info = $this->redis->hGet($cache_key, $email);                      
 
-        if($cached_user_info){ 
-            // echo json_encode(["cache" => "data cached"]);                                                         
-            $user_info = json_decode($cached_user_info, true);
-            return $user_info;
-        }
+        // if($cached_user_info){ 
+        //     // echo json_encode(["cache" => "data cached"]);                                                         
+        //     $user_info = json_decode($cached_user_info, true);
+        //     return $user_info;
+        // }
 
         // echo json_encode(["cache" => "data not cached"]);
 
@@ -32,8 +32,8 @@ class UserModel extends \framework\class_abstract\Abstract_Model{
                 "auth_flag" => $auth_flag
             ];
 
-            $this->redis->hSet($cache_key, $email, json_encode($user_info));
-            $this->redis->expire($cache_key, 300);
+            // $this->redis->hSet($cache_key, $email, json_encode($user_info));
+            // $this->redis->expire($cache_key, 300);
 
             return $user_info;
         
