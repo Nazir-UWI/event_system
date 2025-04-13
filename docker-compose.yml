@@ -14,7 +14,7 @@ services:
     depends_on:
       - caching_service
     deploy:
-      replicas: 3
+      replicas: 1
     environment:
       DB_HOST: ${DB_HOST}
       DB_USER: ${DB_USER}
@@ -28,7 +28,7 @@ services:
     depends_on:
       - caching_service
     deploy:
-      replicas: 3
+      replicas: 1
     environment:
       DB_HOST: ${DB_HOST}
       DB_USER: ${DB_USER}
@@ -42,7 +42,7 @@ services:
     depends_on:
       - caching_service
     deploy:
-      replicas: 3
+      replicas: 1
     environment:
       DB_HOST: ${DB_HOST}
       DB_USER: ${DB_USER}
@@ -69,6 +69,20 @@ services:
     restart: always
     ports:
       - "8070:80"
+
+  database_service:
+    image: mysql:latest
+    container_name: database_service
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: event_management
+    volumes:
+      - dbdata:/var/lib/mysql
+
+volumes:
+  dbdata:
 
   # prometheus:
   #   image: prom/prometheus
