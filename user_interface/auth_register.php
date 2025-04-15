@@ -1,4 +1,6 @@
 <?php
+    require_once "./config/config.php";
+
     $title = "Register"; 
     require_once "./partials/header.php";
     require_once "./partials/navbar.php";
@@ -16,7 +18,7 @@
         $data['email'] = !empty($_POST['email']) ? $_POST['email'] : null;
         $data['password'] = !empty($_POST['password']) ? $_POST['email'] : null;
 
-        $url = "http://localhost:8080{$path}";
+        $url = "http://".SERVER_IP."{$path}";
 
         $options = [
             'http' => [

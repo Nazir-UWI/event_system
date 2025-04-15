@@ -1,4 +1,6 @@
 <?php
+    require_once "./config/config.php";
+
     $title = "View Event"; 
     require_once "./partials/header.php";
     require_once "./partials/navbar.php";
@@ -24,7 +26,7 @@
         $data['price'] = !empty($_POST['price']) ? $_POST['price'] : null;
 
 
-        $url = "http://localhost:8080{$path}";
+        $url = "http://".SERVER_IP."{$path}";
 
         $options = [
             'http' => [

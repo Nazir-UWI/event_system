@@ -1,4 +1,6 @@
 <?php
+    require_once "./config/config.php";
+
     $title = "User"; 
     require_once "./partials/header.php";
     require_once "./partials/navbar.php";
@@ -15,7 +17,7 @@
         $data = [];
         $data['email'] = !empty($_POST['email']) ? $_POST['email'] : null;
 
-        $url = "http://localhost:8080{$path}";
+        $url = "http://".SERVER_IP."{$path}";
 
         $options = [
             'http' => [
